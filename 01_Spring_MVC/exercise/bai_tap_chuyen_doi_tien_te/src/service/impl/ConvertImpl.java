@@ -1,10 +1,10 @@
 package service.impl;
 
 import org.springframework.stereotype.Service;
-import service.Convert;
+import service.ConvertService;
 
 @Service
-class ConvertImpl implements Convert {
+class ConvertImpl implements ConvertService {
     @Override
     public double convert(double a) {
         return 23000*a;

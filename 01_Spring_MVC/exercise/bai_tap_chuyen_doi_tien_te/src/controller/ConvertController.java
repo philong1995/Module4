@@ -6,14 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import service.Convert;
+import service.ConvertService;
 
 @Controller
 public class ConvertController {
 
     @Qualifier("convertImpl")
     @Autowired
-    private Convert convertService;
+    private ConvertService convertService;
 
     @GetMapping({"/convert"})
     public String convert(@RequestParam double a, Model model) {

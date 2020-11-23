@@ -1,5 +1,5 @@
 package service;
 
-public interface Convert {
+public interface ConvertService {
     double convert(double a);
 }
