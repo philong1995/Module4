@@ -18,6 +18,5 @@
     <input type="text" name="a" placeholder="enter a money">
     <input type="submit" value="convert">
   </form>
-  <h1>Money after convert is: ${money}VND</h1>
   </body>
 </html>

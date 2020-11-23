@@ -16,9 +16,9 @@ public class ConvertController {
     private Convert convertService;
 
     @GetMapping({"/convert"})
-    public String convert(@RequestParam String a, Model model) {
+    public String convert(@RequestParam double a, Model model) {
 
-        model.addAttribute("money", convertService.convert(Double.parseDouble(a)));
+        model.addAttribute("money", convertService.convert(a));
 
         return "convert";
     }
