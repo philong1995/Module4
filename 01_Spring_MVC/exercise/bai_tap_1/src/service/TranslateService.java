@@ -1,5 +1,5 @@
 package service;
 
-public interface Translate {
+public interface TranslateService {
     String trans(String word);
 }

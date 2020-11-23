@@ -1,13 +1,13 @@
 package service.impl;
 
 import org.springframework.stereotype.Service;
-import service.Translate;
+import service.TranslateService;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class TranslateImpl implements Translate {
+public class TranslateImpl implements TranslateService {
 
     @Override
     public String trans(String word) {
