@@ -14,13 +14,13 @@
 <body>
 <center>
 <h1>Calculator </h1>
-<form>
+<form action="/calculator" method="get">
         <input type="text" id="num1" name="num1" placeholder="first number">
         <input type="text" id="num2" name="num2" placeholder="second number"><br><br>
-        <button type="submit" formaction="/add">+</button>
-        <button type="submit" formaction="/sub">-</button>
-        <button type="submit" formaction="/mul">x</button>
-        <button type="submit" formaction="/div">/</button>
+        <input type="submit" name="calculate" value="+">
+        <input type="submit" name="calculate" value="-">
+        <input type="submit" name="calculate" value="*">
+        <input type="submit" name="calculate" value="/">
 </form>
 <h2>Result : ${resultNumber}</h2>
 </center>
