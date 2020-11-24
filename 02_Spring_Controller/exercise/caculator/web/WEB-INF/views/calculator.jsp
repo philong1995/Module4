@@ -17,10 +17,10 @@
 <form>
         <input type="text" id="num1" name="num1" placeholder="first number">
         <input type="text" id="num2" name="num2" placeholder="second number"><br><br>
-        <button type="submit" formaction="/add">Addition(+)</button>
-        <button type="submit" formaction="/sub">Subtraction(-)</button>
-        <button type="submit" formaction="/mul">Multiplication(X)</button>
-        <button type="submit" formaction="/div">Division(/)</button>
+        <button type="submit" formaction="/add">+</button>
+        <button type="submit" formaction="/sub">-</button>
+        <button type="submit" formaction="/mul">x</button>
+        <button type="submit" formaction="/div">/</button>
 </form>
 <h2>Result : ${resultNumber}</h2>
 </center>

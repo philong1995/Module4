@@ -20,8 +20,9 @@
     <title>Sandwich Condiments</title>
 </head>
 <body>
+<center>
     <form action="/save" method="get">
-        <label for="condimentsName">Input name</label>
+        <label for="condimentsName">Input Name Sandwich</label>
         </label><input id="condimentsName" type="text" name="name">
         <label>Lettuce</label>
         <input type="checkbox" name="condiments" value="Lettuce">
@@ -34,5 +35,6 @@
         <hr>
         <button type="submit">Save</button>
     </form>
+</center>
 </body>
 </html>

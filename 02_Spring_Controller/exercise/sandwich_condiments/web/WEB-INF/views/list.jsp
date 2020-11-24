@@ -21,7 +21,7 @@
   <c:forEach var="condiment" items="${condimentsList}">
     <tr>
       <td>${condiment.name}</td>
-      <td>${condiment.condiments}</td>
+      <td>${condiment.getCondiments()}</td>
     </tr>
   </c:forEach>
 </table>

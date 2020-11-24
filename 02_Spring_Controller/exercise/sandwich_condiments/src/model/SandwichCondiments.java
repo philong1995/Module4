@@ -22,8 +22,8 @@ public class SandwichCondiments {
         this.name = name;
     }
 
-    public String[] getCondiments() {
-        return condiments;
+    public String getCondiments() {
+        return Arrays.toString(condiments);
     }
 
     public void setCondiments(String[] condiments) {
