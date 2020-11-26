@@ -7,12 +7,16 @@ public class Product {
     private int amount;
     private String describe;
     private String producer;
+    static int idNum = 0;
 
     public Product() {
+        idNum ++;
+        this.idProduct = idNum;
     }
 
-    public Product(int idProduct, String nameProduct, double price, int amount, String describe, String producer) {
-        this.idProduct = idProduct;
+    public Product( String nameProduct, double price, int amount, String describe, String producer) {
+        idNum ++;
+        this.idProduct = idNum;
         this.nameProduct = nameProduct;
         this.price = price;
         this.amount = amount;

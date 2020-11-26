@@ -15,9 +15,9 @@ public class ProductImpl implements ProductService {
 
     static {
         products = new HashMap<>();
-        products.put(1, new Product(1, "Samsung Galaxy Note10+", 17000000, 10, "Full phụ kiện", "Samsung"));
-        products.put(2, new Product(2, "Iphone 11 Pro Max", 27000000, 10, "Full phụ kiện", "Apple"));
-        products.put(3, new Product(3, "Xiaomi Readmi Note 7", 7000000, 10, "Full phụ kiện", "Xiaomi"));
+        products.put(1, new Product("Samsung Galaxy Note10+", 17000000, 10, "Full phụ kiện", "Samsung"));
+        products.put(2, new Product( "Iphone 11 Pro Max", 27000000, 10, "Full phụ kiện", "Apple"));
+        products.put(3, new Product( "Xiaomi Readmi Note 7", 7000000, 10, "Full phụ kiện", "Xiaomi"));
     }
 
     @Override
