@@ -3,6 +3,7 @@ package com.codegym.controller;
 import com.codegym.model.Product;
 import com.codegym.service.ProductService;
 import com.codegym.service.impl.ProductImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +15,13 @@ import java.util.List;
 
 @Controller
 public class ProductController {
-    private ProductService productService = new ProductImpl();
+
+    @Autowired
+    private ProductService productService;
 
     @GetMapping(value = "/",produces = "application/x-www-form-urlencoded;charset=UTF-8")
     public String index(Model model) {
-        List productList = productService.findAll();
+        List<Product> productList = productService.findAll();
         model.addAttribute("product", productList);
         return "home";
     }
@@ -31,7 +34,6 @@ public class ProductController {
 
     @PostMapping("/product/save")
     public String save(Product product, RedirectAttributes redirect) {
-        product.setIdProduct((int)(Math.random() * 10000));
         productService.save(product);
         redirect.addFlashAttribute("success", "Saved product successfully!");
         return "redirect:/";

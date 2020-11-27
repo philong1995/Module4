@@ -1,30 +1,45 @@
 package com.codegym.model;
 
+import javax.persistence.*;
+
+@Entity(name = "product")
 public class Product {
-    private int idProduct;
+//    PRIMARY KEY AUTO_INCREMENT
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer idProduct;
+
     private String nameProduct;
     private double price;
     private int amount;
-    private String describe;
+    private String describeProduct;
     private String producer;
 
     public Product() {
     }
 
-    public Product(int idProduct, String nameProduct, double price, int amount, String describe, String producer) {
-        this.idProduct = idProduct;
-        this.nameProduct = nameProduct;
-        this.price = price;
-        this.amount = amount;
-        this.describe = describe;
-        this.producer = producer;
-    }
+//    public Product(Integer idProduct, String nameProduct, double price, int amount, String describe, String producer) {
+//        this.idProduct = idProduct;
+//        this.nameProduct = nameProduct;
+//        this.price = price;
+//        this.amount = amount;
+//        this.describe = describe;
+//        this.producer = producer;
+//    }
+//
+//    public Product(String nameProduct, double price, int amount, String describe, String producer) {
+//        this.nameProduct = nameProduct;
+//        this.price = price;
+//        this.amount = amount;
+//        this.describe = describe;
+//        this.producer = producer;
+//    }
 
-    public int getIdProduct() {
+    public Integer getIdProduct() {
         return idProduct;
     }
 
-    public void setIdProduct(int idProduct) {
+    public void setIdProduct(Integer idProduct) {
         this.idProduct = idProduct;
     }
 
@@ -52,12 +67,12 @@ public class Product {
         this.amount = amount;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getDescribeProduct() {
+        return describeProduct;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe;
+    public void setDescribeProduct(String describeProduct) {
+        this.describeProduct = describeProduct;
     }
 
     public String getProducer() {
