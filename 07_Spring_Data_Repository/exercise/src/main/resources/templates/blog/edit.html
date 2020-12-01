@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Content</title>
+</head>
+<body>
+<h1>Edit content</h1>
+<p>
+    <a href="/">Back My Blog</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/edit-my-blog}" th:object="${myBlog}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name Post :</td>
+            <td><input type="text" th:field="*{namePosts}"/></td>
+        </tr>
+        <tr>
+            <td>Writer :</td>
+            <td><input type="text" th:field="*{writer}"/></td>
+        </tr>
+        <tr>
+            <td>Category:</td>
+            <td>
+                <select name="category">
+                    <option th:each="p : ${my_category}"
+                            th:value="${p.id}"
+                            th:text="${p.name}"
+                            th:selected="(${p.id} == *{category.id})"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Content :</td>
+            <td><input type="text" th:field="*{content}"/></td>
+        </tr>
+        <tr>
+            <td>Date of writing :</td>
+            <td><input type="date" th:field="*{date}"/></td>
+        </tr>
+            <td></td>
+            <td><input type="submit" value="Update Content"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

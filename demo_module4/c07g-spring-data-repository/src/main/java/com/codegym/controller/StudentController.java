@@ -38,8 +38,6 @@ public class StudentController {
         }
 
         model.addAttribute("keywordAfterCheck", keywordAfterCheck);
-//        model.addAttribute("contentBlog", "<script>location.href = 'https://www.google.com'</script>");
-
         return "list_student";
     }
 
@@ -55,25 +53,6 @@ public class StudentController {
         return "detail_student";
     }
 
-//    @GetMapping({"/", "/list"})
-//    public ModelAndView goStudentList() {
-//        ModelAndView modelAndView =
-//                new ModelAndView("list_student",
-//                        "listStudent",
-//                        this.studentService.findAll());
-////        modelAndView.addObject("instructorList", );
-//
-//        return modelAndView;
-//    }
-
-//    @GetMapping({"/", "/list"})
-//    public String goStudentList(ModelMap modelMap) {
-////        model.addAttribute("listStudent", this.studentService.findAll());
-//        modelMap.put("listStudent", this.studentService.findAll());
-//
-//        return "list_student";
-//    }
-
     @GetMapping("/create")
     public String goCreateStudent(Model model) {
         model.addAttribute("studentObj", new Student());
@@ -86,9 +65,6 @@ public class StudentController {
                                 RedirectAttributes redirectAttributes) {
         this.studentService.save(studentObj);
         redirectAttributes.addFlashAttribute("messageSuccess", "Register successfully!");
-//        model.addAttribute("studentObj", studentObj);
-
-//        model.addAttribute("listStudent", studentService.findAll());
         return "redirect:/student/list";
     }
 }

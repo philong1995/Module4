@@ -1,6 +1,8 @@
 package com.codegym.controller;
 
+import com.codegym.entity.Category;
 import com.codegym.entity.MyBlog;
+import com.codegym.service.CategoryService;
 import com.codegym.service.MyBlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
@@ -14,21 +16,38 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping({"", "/home"})
 public class MyBlogController {
     @Autowired
     private MyBlogService myBlogService;
 
-    @GetMapping("/")
-    public ModelAndView listBlog(){
-        List<MyBlog> myBlog = myBlogService.findAll();
-        ModelAndView modelAndView = new ModelAndView("list");
-        modelAndView.addObject("myBlog", myBlog);
-        return modelAndView;
+    @Autowired
+    private CategoryService categoryService;
+
+    @ModelAttribute("my_category")
+    public List<Category> provinces(){
+        return categoryService.findAll();
+    }
+
+    @GetMapping
+    public String Home(Model model,
+                       @PageableDefault(size = 3) Pageable pageable,
+                       @RequestParam Optional<String> keyword) {
+        String keywordAfterCheck = "";
+
+        if (!keyword.isPresent()) {
+            model.addAttribute("myBlog", this.myBlogService.findAll(pageable));
+        } else {
+            keywordAfterCheck = keyword.get();
+            model.addAttribute("myBlog", this.myBlogService.searchPostByName(keywordAfterCheck, pageable));
+        }
+        model.addAttribute("keywordAfterCheck", keywordAfterCheck);
+        return "list";
     }
 
     @GetMapping("/create-my-blog")
     public ModelAndView showCreateForm(){
-        ModelAndView modelAndView = new ModelAndView("create");
+        ModelAndView modelAndView = new ModelAndView("/blog/create");
         modelAndView.addObject("myBlog", new MyBlog());
         return modelAndView;
     }
@@ -36,7 +55,7 @@ public class MyBlogController {
     @PostMapping("/create-my-blog")
     public ModelAndView saveBlog(@ModelAttribute("myBlog") MyBlog myBlog){
         myBlogService.save(myBlog);
-        ModelAndView modelAndView = new ModelAndView("create");
+        ModelAndView modelAndView = new ModelAndView("/blog/create");
         modelAndView.addObject("myBlog", new MyBlog());
         modelAndView.addObject("message", "New article created successfully");
         return modelAndView;
@@ -45,14 +64,14 @@ public class MyBlogController {
     @GetMapping("/view-my-blog/{id}")
     public String readBlock(@PathVariable int id, Model model) {
         model.addAttribute("myBlog",myBlogService.findById(id));
-        return "view";
+        return "/blog/view";
     }
 
     @GetMapping("/edit-my-blog/{id}")
     public ModelAndView showEditForm(@PathVariable Integer id){
         MyBlog myBlog = myBlogService.findById(id);
         if(myBlog != null) {
-            ModelAndView modelAndView = new ModelAndView("edit");
+            ModelAndView modelAndView = new ModelAndView("/blog/edit");
             modelAndView.addObject("myBlog", myBlog);
             return modelAndView;
 
@@ -63,9 +82,9 @@ public class MyBlogController {
     }
 
     @PostMapping("/edit-my-blog")
-    public ModelAndView updateBlog(@ModelAttribute("customer") MyBlog myBlog){
+    public ModelAndView updateBlog(@ModelAttribute("myBlog") MyBlog myBlog){
         myBlogService.save(myBlog);
-        ModelAndView modelAndView = new ModelAndView("edit");
+        ModelAndView modelAndView = new ModelAndView("/blog/edit");
         modelAndView.addObject("myBlog", myBlog);
         modelAndView.addObject("message", "Article updated successfully");
         return modelAndView;
@@ -75,7 +94,7 @@ public class MyBlogController {
     public ModelAndView showDeleteForm(@PathVariable Integer id){
         MyBlog myBlog = myBlogService.findById(id);
         if(myBlog != null) {
-            ModelAndView modelAndView = new ModelAndView("delete");
+            ModelAndView modelAndView = new ModelAndView("/blog/delete");
             modelAndView.addObject("myBlog", myBlog);
             return modelAndView;
 
@@ -88,6 +107,6 @@ public class MyBlogController {
     @PostMapping("/delete-my-blog")
     public String deleteBlog(@ModelAttribute("myBlog") MyBlog myBlog){
         myBlogService.remove(myBlog.getId());
-        return "redirect:/";
+        return "redirect:home";
     }
 }
