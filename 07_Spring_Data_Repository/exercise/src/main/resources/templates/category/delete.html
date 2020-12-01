@@ -10,7 +10,7 @@
 <p>
     <a href="/category">Province list</a>
 </p>
-<form th:action="@{/delete-province}" th:object="${category}" method="post">
+<form th:action="@{/delete-category}" th:object="${category}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>
         <tr>

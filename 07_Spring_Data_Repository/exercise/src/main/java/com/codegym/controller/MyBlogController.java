@@ -28,7 +28,7 @@ public class MyBlogController {
         return categoryService.findAll();
     }
 
-    @GetMapping({"", "/home","/myBlog"})
+    @GetMapping({"","/myBlog"})
     public String Home(Model model,
                        @PageableDefault(size = 3) Pageable pageable,
                        @RequestParam Optional<String> keyword) {

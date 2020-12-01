@@ -82,6 +82,6 @@ public class CategoryController {
     @PostMapping("/delete-category")
     public String deleteProvince(@ModelAttribute("category") Category category){
         categoryService.remove(category.getId());
-        return "redirect:category";
+        return "redirect:/category";
     }
 }

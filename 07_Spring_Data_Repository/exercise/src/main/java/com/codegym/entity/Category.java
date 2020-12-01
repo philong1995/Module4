@@ -10,7 +10,7 @@ public class Category {
     private int id;
     private String name;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     List<MyBlog> myBlogList;
 
     public Category() {
