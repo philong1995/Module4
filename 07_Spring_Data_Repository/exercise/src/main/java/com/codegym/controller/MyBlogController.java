@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping({"", "/home"})
 public class MyBlogController {
     @Autowired
     private MyBlogService myBlogService;
@@ -29,7 +28,7 @@ public class MyBlogController {
         return categoryService.findAll();
     }
 
-    @GetMapping
+    @GetMapping({"", "/home","/myBlog"})
     public String Home(Model model,
                        @PageableDefault(size = 3) Pageable pageable,
                        @RequestParam Optional<String> keyword) {
@@ -41,7 +40,7 @@ public class MyBlogController {
             keywordAfterCheck = keyword.get();
             model.addAttribute("myBlog", this.myBlogService.searchPostByName(keywordAfterCheck, pageable));
         }
-        model.addAttribute("keywordAfterCheck", keywordAfterCheck);
+        model.addAttribute("keyword", keywordAfterCheck);
         return "list";
     }
 
