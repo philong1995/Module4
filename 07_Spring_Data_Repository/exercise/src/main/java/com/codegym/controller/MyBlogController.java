@@ -106,6 +106,6 @@ public class MyBlogController {
     @PostMapping("/delete-my-blog")
     public String deleteBlog(@ModelAttribute("myBlog") MyBlog myBlog){
         myBlogService.remove(myBlog.getId());
-        return "redirect:home";
+        return "redirect:myBlog";
     }
 }

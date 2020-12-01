@@ -19,8 +19,6 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> findAll() {
         return this.studentRepository.findAll();
-//        return this.studentRepository.findByNameContaining("T");
-//        return this.studentRepository.findByNameContainingAndGenderContaining("T", "3");
     }
 
     @Override

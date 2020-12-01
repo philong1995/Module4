@@ -41,7 +41,6 @@ public class StudentController {
         }
 
         model.addAttribute("keywordAfterCheck", keywordAfterCheck);
-//        model.addAttribute("contentBlog", "<script>location.href = 'https://www.google.com'</script>");
 
         return "list_student";
     }
@@ -58,25 +57,6 @@ public class StudentController {
         return "detail_student";
     }
 
-//    @GetMapping({"/", "/list"})
-//    public ModelAndView goStudentList() {
-//        ModelAndView modelAndView =
-//                new ModelAndView("list_student",
-//                        "listStudent",
-//                        this.studentService.findAll());
-////        modelAndView.addObject("instructorList", );
-//
-//        return modelAndView;
-//    }
-
-//    @GetMapping({"/", "/list"})
-//    public String goStudentList(ModelMap modelMap) {
-////        model.addAttribute("listStudent", this.studentService.findAll());
-//        modelMap.put("listStudent", this.studentService.findAll());
-//
-//        return "list_student";
-//    }
-
     @GetMapping("/create")
     public String goCreateStudent(Model model) {
         model.addAttribute("studentObj", new Student());
@@ -88,8 +68,6 @@ public class StudentController {
     public String createStudent(Model model, @Valid @ModelAttribute(name = "studentObj") Student student,
                                 BindingResult bindingResult,
                                 RedirectAttributes redirectAttributes) {
-
-//        new Student().validate(student, bindingResult);
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("listClassRoom", this.classRoomService.findAll());
