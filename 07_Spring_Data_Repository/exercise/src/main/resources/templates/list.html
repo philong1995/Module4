@@ -36,6 +36,9 @@
         </tr>
     </th:block>
 </table>
+<a th:if="${myBlog.hasPrevious()}" th:href="@{/myBlog(page = ${myBlog.number - 1}, keyword = ${keywordAfterCheck})}">Previous</a>
+<span th:text="${myBlog.number + 1}"></span>/<span th:text="${myBlog.totalPages}"></span>
+<a th:if="${myBlog.hasNext()}" th:href="@{/myBlog(page = ${myBlog.number + 1}, keyword = ${keywordAfterCheck})}">Next</a>
 <footer th:replace="/layout :: footer"></footer>
 </body>
 </html>
