@@ -30,6 +30,7 @@ public class User implements Validator {
     private int age;
 
     @Email(message = "email is not in the correct format")
+    @NotBlank(message = "Email not empty")
     private String email;
 
     public User() {
