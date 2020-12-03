@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+</head>
+<body>
+<form action="/pay" method="post">
+    <table id="user">
+        <tr>
+            <td>ID Library Card :</td>
+            <td>
+                <input type="text" name="id_card" placeholder="Enter id card">
+            </td>
+        </tr>
+        <tr>
+            <td>ID Book :</td>
+            <td>
+                <input readonly type="text" name="id_book" th:value="${book.idBook}">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Pay"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

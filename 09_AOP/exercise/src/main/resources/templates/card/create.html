@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <title>Create New Post</title>
+</head>
+<body>
+<h1>Create new user</h1>
+<p>
+    <a href="/card">Back List Library Card</a>
+</p>
+<form th:action="@{/create-new-card}" th:object="${card}" method="post">
+    <table id="user">
+        <tr>
+                <td>Name Student :</td>
+                <td>
+                    <input type="text" th:field="*{nameStudent}"/>
+                </td>
+        </tr>
+        <tr>
+            <td>Class Student :</td>
+            <td>
+                <input type="text" th:field="*{classStudent}"/>
+            </td>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create New Card"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

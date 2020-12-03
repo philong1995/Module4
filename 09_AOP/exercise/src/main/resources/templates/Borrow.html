@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+</head>
+<body>
+
+<form action="borrow" method="post">
+    <table id="user">
+        <tr>
+            <td>ID Library Card :</td>
+            <td>
+                <input type="text" name="id_card"/>
+            </td>
+        </tr>
+        <tr>
+            <td>ID Book :</td>
+            <td>
+                <input readonly type="text" name="id_book" th:value="${book.idBook}">
+            </td>
+        </tr>
+        <tr>
+            <td>Name book: </td>
+            <td>
+                <input readonly type="text" th:value="${book.name}">
+            </td>
+        </tr>
+        <tr>
+            <td>Writer book: </td>
+            <td>
+                <input readonly type="text" th:value="${book.writer}">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Borrow"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
