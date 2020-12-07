@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <title>Create New Post</title>
+</head>
+<body>
+<h1>Create new user</h1>
+<p>
+    <a href="/product">Back List Product</a>
+</p>
+<form th:action="@{/create-new-product}" th:object="${product}" method="post">
+    <table id="user">
+        <tr>
+                <td>Name Product :</td>
+                <td>
+                    <input type="text" th:field="*{nameProduct}"/>
+                </td>
+        </tr>
+        <tr>
+            <td>Info Product :</td>
+            <td>
+                <input type="text" th:field="*{infoProduct}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Price Product :</td>
+            <td>
+                <input type="text" th:field="*{priceProduct}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Producer :</td>
+            <td>
+                <input type="text" th:field="*{producer}"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create New Card"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

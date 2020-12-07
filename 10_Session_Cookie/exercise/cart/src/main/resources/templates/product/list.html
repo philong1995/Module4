@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+</head>
+<body>
+<center>
+    <h1>Product List </h1>
+</center>
+<a href="/create-new-product">Create New Product</a>
+<center>
+    <p style="color: green" th:text="${message}"></p>
+</center>
+
+<table id="user">
+    <tr>
+        <th>ID</th>
+        <th>Name Student</th>
+        <th>Class Student</th>
+        <th>Action</th>
+    </tr>
+    <th:block th:each="products : ${product}">
+        <tr>
+            <td th:text="${products.idProduct}"></td>
+            <td th:text="${products.nameProduct}"></td>
+            <td th:text="${products.infoProduct}"></td>
+            <td th:text="${products.priceProduct}"></td>
+            <td th:text="${products.producer}"></td>
+            <td>
+                <a th:href="@{/delete-product/__${products.idProduct}__ }">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+<center>
+    <p></p>
+    <h2>
+        <a href="/" style="color: blue;text-decoration: none">Library</a>
+    </h2>
+</center>
+<a th:if="${product.hasPrevious()}" th:href="@{/product(page = ${product.number - 1}, keyword = ${keywordAfterCheck})}">Previous</a>
+<span th:text="${product.number + 1}"></span>/<span th:text="${product.totalPages}"></span>
+<a th:if="${product.hasNext()}" th:href="@{/product(page = ${product.number + 1}, keyword = ${keywordAfterCheck})}">Next</a>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

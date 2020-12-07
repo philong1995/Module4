@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <title>Create New Post</title>
+</head>
+<body>
+<h1>Create new post</h1>
+<p>
+    <a href="/">Back My Blog</a>
+</p>
+<form th:action="@{/create-my-blog}" th:object="${myBlog}" method="post">
+    <table id="myBlog">
+        <tr>
+            <td>Name Post :</td>
+            <td><input type="text" th:field="*{namePosts}"/></td>
+        </tr>
+        <tr>
+            <td>Writer :</td>
+            <td><input type="text" th:field="*{writer}"/></td>
+        </tr>
+        <tr>
+            <td>Category:</td>
+            <td>
+                <select th:field="*{category}">
+                    <option th:each="p : ${my_category}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Content :</td>
+            <td><input type="text" th:field="*{content}"/></td>
+        </tr>
+        <tr>
+            <td>Date of writing :</td>
+            <td><input type="date" th:field="*{date}"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create new post"></td>
+        </tr>
+    </table>
+    <center>
+        <div class="notify">
+            <div th:if="${message}">
+                <span th:text="${message}"></span>
+            </div>
+        </div>
+    </center>
+</form>
+</body>
+</html>
