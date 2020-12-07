@@ -21,7 +21,7 @@ public class BlogRestController {
     private MyBlogService myblogService;
     @Autowired
     private CategoryService categoryService;
-    @GetMapping("/list-blog")
+    @GetMapping("/myblog")
     public ResponseEntity<List<MyBlog>> getAllBlog(){
         List<MyBlog> listBlog = myblogService.findAll();
         if(listBlog.size()==0){

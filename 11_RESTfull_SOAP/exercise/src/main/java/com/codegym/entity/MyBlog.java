@@ -1,5 +1,7 @@
 package com.codegym.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity(name = "my_blog")
@@ -17,6 +19,7 @@ public class MyBlog {
 
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @JsonBackReference
     private Category category;
 
     public int getId() {

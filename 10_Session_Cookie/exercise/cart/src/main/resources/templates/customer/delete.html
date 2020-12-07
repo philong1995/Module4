@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <title>Delete Library Card</title>
+</head>
+<body>
+<h1>Delete this card</h1>
+<h2>Are you sure?</h2>
+<p>
+    <a href="/card">Back List Library Card</a>
+</p>
+<form th:action="@{/delete-card}" th:object="${card}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table id="user">
+        <tr>
+            <td>Name Student :</td>
+            <td th:text="${card.nameStudent}"></td>
+        </tr>
+        <tr>
+            <td>Class Student :</td>
+            <td th:text="${card.classStudent}"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Delete Card"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
