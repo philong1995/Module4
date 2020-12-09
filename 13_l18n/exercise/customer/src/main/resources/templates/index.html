@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<center>
+    <h1 style="color: blue" th:text="#{customer.head}">Customers</h1>
+</center>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/create-customer">Create new customer</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/provinces">Province list</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="......" aria-label="Search">
+            <button th:text="#{customer.search}" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col" th:text="#{customer.name}">Name Customer</th>
+        <th scope="col" th:text="#{customer.dob}">Day of birth</th>
+        <th scope="col" th:text="#{customer.gender}">Gender</th>
+        <th scope="col" th:text="#{customer.province}">Province</th>
+        <th scope="col" th:text="#{customer.email}">Email</th>
+        <th scope="col" th:text="#{customer.action}">Action</th>
+    </tr>
+    </thead>
+    <th:block th:each="customer : ${customers}">
+        <tr>
+            <td th:text="${customer.id}"></td>
+            <td th:text="${customer.fullName}"></td>
+            <td th:text="${customer.birthDay}"></td>
+            <td th:switch="${customer.gender}">
+                <th:block th:case="0">Female</th:block>
+                <th:block th:case="1">Male</th:block>
+            </td>
+            <td th:text="${customer.province.nameProvince}"></td>
+            <td th:text="${customer.email}"></td>
+            <td>
+                <a th:href="@{/edit-customer/__${customer.id}__ }">Edit</a>
+                <a th:href="@{/delete-customer/__${customer.id}__ }">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+<center>
+    <th:block th:if="${message}">
+        <p style="color: green" th:text="${message}"></p>
+    </th:block>
+</center>
+
+<center>
+    <a th:if="${customers.hasPrevious()}" th:href="@{/customers(page = ${customers.number - 1}, keyword = ${keywordAfterCheck})}">Previous</a>
+    <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>
+    <a th:if="${customers.hasNext()}" th:href="@{/customers(page = ${customers.number + 1}, keyword = ${keywordAfterCheck})}">Next</a>
+
+</center>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

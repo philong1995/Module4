@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<center>
+    <h1>Province List</h1>
+</center>
+<a href="/create-province">Create Province</a>
+<center>
+    <p style="color: green" th:text="${message}"></p>
+</center>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name Province</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+
+    <th:block th:each="province : ${provinces}">
+        <tr>
+            <td th:text="${province.idProvince}"></td>
+            <td th:text="${province.nameProvince}"></td>
+            <td>
+                <a th:href="@{/delete-province/__${province.idProvince}__ }">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+<center>
+    <p></p>
+    <h2>
+        <a href="/" style="color: blue;text-decoration: none">List Customer</a>
+    </h2>
+</center>
+
+<a th:if="${provinces.hasPrevious()}" th:href="@{/provinces(page = ${provinces.number - 1}, keyword = ${keywordAfterCheck})}">Previous</a>
+<span th:text="${provinces.number + 1}"></span>/<span th:text="${provinces.totalPages}"></span>
+<a th:if="${provinces.hasNext()}" th:href="@{/provinces(page = ${provinces.number + 1}, keyword = ${keywordAfterCheck})}">Next</a>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

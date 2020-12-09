@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create customer</title>
+</head>
+<body>
+<h1>Create customer</h1>
+<p>
+    <a href="/customers">Customer list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/create-customer}" th:object="${customer}" method="post">
+    <table>
+        <tr>
+            <td  th:text="#{customer.name}">Name Customer :</td>
+            <td><input type="text" th:field="*{fullName}"/></td>
+        </tr>
+        <tr>
+            <td  th:text="#{customer.dob}">Day of birth :</td>
+            <td><input type="date" th:field="*{birthDay}"/></td>
+        </tr>
+        <tr>
+            <td  th:text="#{customer.gender}">Gender :</td>
+            <td>
+                <select th:field="*{gender}">
+                    <option value="0">Female</option>
+                    <option value="1">Male</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td  th:text="#{customer.email}">Email :</td>
+            <td><input type="text" th:field="*{email}"/></td>
+        </tr>
+        <tr>
+            <td  th:text="#{customer.province}">Province:</td>
+            <td>
+                <select th:field="*{province}">
+                    <option th:each="p : ${provinces}" th:value="${p.idProvince}" th:text="${p.nameProvince}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create customer"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
