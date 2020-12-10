@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+<div class="content" th:object="${myBlog}">
+    <h2 th:text="${myBlog.namePosts}"></h2>
+    <p style="font-size: small" th:text="${myBlog.writer}"></p>
+    <p style="font-size: small" th:text="${myBlog.date}"></p>
+    <pre th:text="${myBlog.content}"></pre>
+</div>
+<a href="/">Back My Blog</a>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
