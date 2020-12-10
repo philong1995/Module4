@@ -108,4 +108,10 @@ public class MyBlogController {
         myBlogService.remove(myBlog.getId());
         return "redirect:myBlog";
     }
+
+    @GetMapping("/login")
+    public ModelAndView LoginPage(){
+        ModelAndView modelAndView = new ModelAndView("/loginPage");
+        return modelAndView;
+    }
 }
