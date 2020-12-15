@@ -1,0 +1,86 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: auto;
+}
+.header{
+    width: 100%;
+    height: 100px;
+    background-color: white;
+}
+.logo img{
+    height: 70px;
+    width: 100px;
+    margin: 10px;
+    float: left;
+    margin-left: 40px;
+}
+.header-right{
+    float: right;
+    margin: 20px 20px 0 0;
+}
+#content{
+    background-color: antiquewhite;
+    width: 100%;
+    height: 800px;
+}
+#wrapper{
+    background-color: #F8F9FA;
+    height: 570px;
+}
+.col-lg-2{
+    color: #F8F9FA;
+}
+.col-lg-10{
+    margin-top: 20px;
+    height: 550px;
+}
+.col-lg-10 img{
+    height: 550px;
+    margin: 10px 20px 0 -30px;
+}
+.col-lg-10 table{
+    width: 98%;
+    margin-top: 15px;
+    text-align: center;
+}
+.btn-edit:link{
+    text-decoration: none;
+}
+.btn-edit:hover{
+    color: red;
+}
+.btn-edit:active{
+    color: red;
+}
+.btn-delete:link{
+    color: red;
+}
+.btn-delete:hover{
+    color: blue;
+}
+.btn-delete:active{
+    color: red;
+}
+.btn-view:link, .btn-view:hover, .btn-view:visited{
+    text-decoration: none;
+    color: black;
+}
+.btn-view, .btn-edit, .btn-delete{
+    font-size: 16px;
+}
+/*table{*/
+/*    padding: 10px;*/
+/*    box-shadow: 5px 10px 8px #888888;*/
+/*    background-color: #F8F9FA;*/
+/*}*/
+#merge{
+    font-size: 14px;
+}
+.form-inline{
+    float: right;
+    margin-right: 30px;
+}
+.mgr{
+    width: 80%;
+}

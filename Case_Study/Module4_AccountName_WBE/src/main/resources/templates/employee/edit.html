@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+</head>
+<body>
+<h1>Edit Employee</h1>
+<p>
+    <a href="/employee">Back List Employee</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/edit-employee}" th:object="${employee}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name Employee :</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Day of birth :</td>
+            <td><input type="date" th:field="*{birthday}"/></td>
+        </tr>
+        <tr>
+            <td>ID Card :</td>
+            <td><input type="text" th:field="*{idCard}"/></td>
+        </tr>
+        <tr>
+            <td>Salary :</td>
+            <td><input type="text" th:field="*{salary}"/></td>
+        </tr>
+        <tr>
+            <td>Phone :</td>
+            <td><input type="text" th:field="*{phone}"/></td>
+        </tr>
+        <tr>
+            <td>Email :</td>
+            <td><input type="email" th:field="*{email}"/></td>
+        </tr>
+        <tr>
+            <td>Address :</td>
+            <td><input type="text" th:field="*{address}"/></td>
+        </tr>
+        <tr>
+            <td>Position :</td>
+            <td>
+                <select th:field="*{position}">
+                    <option th:each="p : ${position}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Division :</td>
+            <td>
+                <select th:field="*{division}">
+                    <option th:each="p : ${division}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Education Degree :</td>
+            <td>
+                <select th:field="*{educationDegree}">
+                    <option th:each="p : ${education}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <td></td>
+        <td><input type="submit" value="Update Employee"></td>
+        </tr>
+    </table>
+</form>
+
+<th:block th:replace="/layout:: #scriptBlock"></th:block>
+</body>
+</html>

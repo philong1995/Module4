@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Gist</th>
+        <th scope="col">Detail</th>
+    </tr>
+    </thead>
+
+    <th:block th:object="${customer}">
+        <tr>
+            <td>
+                Name Customer:
+            </td>
+            <td>
+                <p th:text="${customer.name}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Day of birth:
+            </td>
+            <td>
+                <p th:text="${customer.birthday}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Gender
+            </td>
+            <td>
+                <p th:text="${customer.gender}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                ID Card
+            </td>
+            <td>
+                <p th:text="${customer.idCard}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Phone Number
+            </td>
+            <td>
+                <p th:text="${customer.phone}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Email
+            </td>
+            <td>
+                <p th:text="${customer.email}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Address
+            </td>
+            <td>
+                <p th:text="${customer.address}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Customer Type
+            </td>
+            <td>
+                <p th:text="${customer.customerType.getName()}"></p>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+<center>
+    <a href="/customer">Back List Customer</a>
+</center>
+
+</body>
+<th:block th:replace="/layout:: #scriptBlock"></th:block>
+</html>

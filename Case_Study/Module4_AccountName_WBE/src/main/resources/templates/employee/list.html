@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+</head>
+<body>
+<center>
+    <h1>Furama Resort</h1>
+    <th:block th:if="${message}">
+        <p th:text="${message}" style="color: green"></p>
+    </th:block>
+</center>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="/employee" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Employee
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/employee">Employee</a>
+                    <a class="dropdown-item" href="/division">Division</a>
+                    <a class="dropdown-item" href="/position">Position</a>
+                    <a class="dropdown-item" href="/education">Education Degree</a>
+                </div>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" href="/create-employee">Add new Employee</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="/search-employee" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name Employee</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+        <th scope="col">Position</th>
+        <th scope="col">Division</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+
+    <th:block th:each="employees : ${employee}">
+        <tr>
+            <td th:text="${employees.id}"></td>
+            <td>
+                <a th:href="@{/view-employee/__${employees.id}__ }"><span th:text="${employees.name}"></span></a>
+            </td>
+            <td th:text="${employees.phone}"></td>
+            <td th:text="${employees.email}"></td>
+            <td th:text="${employees.address}"></td>
+            <td th:text="${employees.position.getName()}"></td>
+            <td th:text="${employees.division.getName()}"></td>
+<!--            <td sec:authorize="hasRole('ADMIN')">-->
+            <td>
+                <a class="btn btn-outline-primary" th:href="@{/edit-employee/__${employees.id}__ }">Edit</a>
+                <button class="btn btn-outline-danger" th:data-id="${employees.getId()}" onclick="getId(this.getAttribute('data-id'))" data-toggle="modal" data-target="#deleteModal">Delete</button>
+            </td>
+
+<!--            </td>-->
+        </tr>
+    </th:block>
+</table>
+
+<nav aria-label="Page navigation example" class="mx-auto" style="width: 200px">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" th:if="${employee.hasPrevious()}" th:href="@{/employee(page = 0, keyword = ${keywordAfterCheck})}">First</a></li>
+        <li class="page-item"><a class="page-link" th:if="${employee.hasPrevious()}" th:href="@{/employee(page = ${employee.number - 1}, keyword = ${keywordAfterCheck})}">Previous</a></li>
+        <li class="page-item"><a class="page-link" th:if="${employee.number > 0}" th:href="@{/employee(page=${employee.number} -1, keyword = ${keywordAfterCheck})}" th:text="${employee.number - 1}"></a></li>
+        <li class="page-item"><a class="page-link" th:href="@{employee(page=${employee.number}, keyword = ${keywordAfterCheck})}" th:text="${employee.number}"></a></li>
+        <li class="page-item"><a class="page-link" th:if="${employee.number > employee.totalPages}" th:href="@{/employee(page=${employee.number} +1, keyword = ${keywordAfterCheck})}" th:text="${employee.number+1}"></a></li>
+        <li class="page-item"><a class="page-link" th:if="${employee.hasNext()}" th:href="@{/employee(page = ${employee.number + 1}, keyword = ${keywordAfterCheck})}">Next</a></li>
+        <li class="page-item"><a class="page-link" th:if="${employee.hasNext()}" th:href="@{/employee(page = ${employee.totalPages - 1}, keyword = ${keywordAfterCheck})}">Last</a></li>
+    </ul>
+</nav>
+
+<!--Modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Do you want delete this Employee?</span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/delete-employee" method="get">
+                <div class="modal-body">
+                    <input type="hidden" id="idToDelete" name="id">
+                    <h4>Choose delete if you want.</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<th:block th:replace="/layout:: #scriptBlock"></th:block>
+
+</body>
+<script th:inline="javascript">
+    function getId(id) {
+        document.getElementById("idToDelete").value = id;
+    }
+</script>
+</html>

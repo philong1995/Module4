@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+</head>
+<body>
+<h1>Edit Customer</h1>
+<p>
+    <a href="/employee">Back List Customer</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/customer/edit}" th:object="${customer}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name Customer :</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Day of birth :</td>
+            <td><input type="date" th:field="*{birthday}"/></td>
+        </tr>
+        <tr>
+            <td>Gender :</td>
+            <td>
+                <select th:field="*{gender}">
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>ID Card :</td>
+            <td><input type="text" th:field="*{idCard}"/></td>
+        </tr>
+        <tr>
+            <td>Phone :</td>
+            <td><input type="text" th:field="*{phone}"/></td>
+        </tr>
+        <tr>
+            <td>Email :</td>
+            <td><input type="email" th:field="*{email}"/></td>
+        </tr>
+        <tr>
+            <td>Address :</td>
+            <td><input type="text" th:field="*{address}"/></td>
+        </tr>
+        <tr>
+            <td>Customer Type :</td>
+            <td>
+                <select th:field="*{customerType}">
+                    <option th:each="p : ${cusType}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <td></td>
+        <td><input type="submit" value="Update Customer"></td>
+        </tr>
+    </table>
+</form>
+
+<th:block th:replace="/layout:: #scriptBlock"></th:block>
+</body>
+</html>

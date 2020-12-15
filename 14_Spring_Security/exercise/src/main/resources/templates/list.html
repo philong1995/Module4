@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 <head th:replace="/layout :: head">
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
 </head>
@@ -7,18 +8,44 @@
 <center>
     <h1>My Blog</h1>
 </center>
-<a href="/create-my-blog">Create new Post</a>
-<a href="/category"> Category list </a>
-<table id="myBlog">
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/create-my-blog">Create New Post</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/category">Category List</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/login">Login</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<table class="table table-hover">
+    <thead>
     <tr>
-        <th>ID</th>
-        <th>Name Post</th>
-        <th>Writer</th>
-        <th>Category</th>
-        <th>Content</th>
-        <th>Date</th>
-        <th>Action</th>
+        <th scope="col">ID</th>
+        <th scope="col">Name Post</th>
+        <th scope="col">Writer</th>
+        <th scope="col">Category</th>
+        <th scope="col">Content</th>
+        <th scope="col">Date</th>
+        <th scope="col">Action</th>
     </tr>
+    </thead>
+
     <th:block th:each="blog : ${myBlog}">
         <tr>
             <td th:text="${blog.id}"></td>
@@ -29,16 +56,31 @@
             <td th:text="${blog.category.name}"></td>
             <td th:text="${blog.content}"></td>
             <td th:text="${blog.date}"></td>
-            <td>
+            <td sec:authorize="hasRole('ADMIN')">
                 <a th:href="@{/edit-my-blog/__${blog.id}__ }">Edit</a>
                 <a th:href="@{/delete-my-blog/__${blog.id}__ }">Delete</a>
             </td>
         </tr>
     </th:block>
 </table>
-<a th:if="${myBlog.hasPrevious()}" th:href="@{/myBlog(page = ${myBlog.number - 1}, keyword = ${keywordAfterCheck})}">Previous</a>
-<span th:text="${myBlog.number + 1}"></span>/<span th:text="${myBlog.totalPages}"></span>
-<a th:if="${myBlog.hasNext()}" th:href="@{/myBlog(page = ${myBlog.number + 1}, keyword = ${keywordAfterCheck})}">Next</a>
-<footer th:replace="/layout :: footer"></footer>
+
+<nav aria-label="Page navigation example" class="mx-auto" style="width: 200px">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" th:if="${myBlog.hasPrevious()}" th:href="@{/myBlog(page = 0, keyword = ${keywordAfterCheck})}">First</a></li>
+        <li class="page-item"><a class="page-link" th:if="${myBlog.hasPrevious()}" th:href="@{/myBlog(page = ${myBlog.number - 1}, keyword = ${keywordAfterCheck})}">Previous</a></li>
+        <li class="page-item"><a class="page-link" th:if="${myBlog.number > 0}" th:href="@{/myBlog(page=${myBlog.number} -1, keyword = ${keywordAfterCheck})}" th:text="${myBlog.number - 1}"></a></li>
+        <li class="page-item"><a class="page-link" th:href="@{myBlog(page=${myBlog.number}, keyword = ${keywordAfterCheck})}" th:text="${myBlog.number}"></a></li>
+        <li class="page-item"><a class="page-link" th:if="${myBlog.number > myBlog.totalPages}" th:href="@{/myBlog(page=${myBlog.number} +1, keyword = ${keywordAfterCheck})}" th:text="${myBlog.number+1}"></a></li>
+        <li class="page-item"><a class="page-link" th:if="${myBlog.hasNext()}" th:href="@{/myBlog(page = ${myBlog.number + 1}, keyword = ${keywordAfterCheck})}">Next</a></li>
+        <li class="page-item"><a class="page-link" th:if="${myBlog.hasNext()}" th:href="@{/myBlog(page = ${myBlog.totalPages - 1}, keyword = ${keywordAfterCheck})}">Last</a></li>
+    </ul>
+</nav>
+
+<!--<a th:if="${myBlog.hasPrevious()}" th:href="@{/myBlog(page = ${myBlog.number - 1}, keyword = ${keywordAfterCheck})}">Previous</a>-->
+<!--<span th:text="${myBlog.number + 1}"></span>/<span th:text="${myBlog.totalPages}"></span>-->
+<!--<a th:if="${myBlog.hasNext()}" th:href="@{/myBlog(page = ${myBlog.number + 1}, keyword = ${keywordAfterCheck})}">Next</a>-->
+
+
 </body>
+<th:block th:replace="/layout:: #scriptBlock"></th:block>
 </html>
