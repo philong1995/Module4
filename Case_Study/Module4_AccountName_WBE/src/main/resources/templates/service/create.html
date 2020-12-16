@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+</head>
+<body>
+
+<h1>Add new Service</h1>
+<p>
+    <a href="/service">Back Service List</a>
+</p>
+<form th:action="@{/service/create}" th:object="${service}" method="post">
+    <table>
+        <tr>
+            <td>Service Type :</td>
+            <td>
+                <select th:field="*{serviceType}">
+                    <option th:each="p : ${serviceType}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Name Service :</td>
+            <td>
+                <input type="text" th:field="*{name}"/>
+<!--                <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>-->
+            </td>
+        </tr>
+        <tr>
+            <td>Area(m2) :</td>
+            <td>
+                <input type="text" th:field="*{area}"/>
+<!--                <p style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></p>-->
+            </td>
+        </tr>
+        <tr>
+            <td>Cost :</td>
+            <td>
+                <input type="text" th:field="*{cost}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Max People :</td>
+            <td>
+                <input type="text" th:field="*{maxPeople}"/>
+<!--                <p style="color: red" th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></p>-->
+            </td>
+        </tr>
+        <tr>
+            <td>Standard Room :</td>
+            <td>
+                <input type="text" th:field="*{standardRoom}"/>
+<!--                <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>-->
+            </td>
+        </tr>
+        <tr>
+            <td>Description :</td>
+            <td>
+                <input type="text" th:field="*{descriptionOtherConvenience}"/>
+<!--                <p style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>-->
+            </td>
+        </tr>
+        <tr>
+            <td>Pool Area(m2) :</td>
+            <td>
+                <input type="text" th:field="*{poolArea}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Number Floor :</td>
+            <td>
+                <input type="text" th:field="*{numberOfFloors}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>Rent Type :</td>
+            <td>
+                <select th:field="*{rentType}">
+                    <option th:each="p : ${rentType}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add new Service"></td>
+        </tr>
+    </table>
+</form>
+
+<th:block th:replace="/layout:: #scriptBlock"></th:block>
+</body>
+</html>

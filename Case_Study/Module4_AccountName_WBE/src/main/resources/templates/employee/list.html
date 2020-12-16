@@ -35,8 +35,8 @@
                 <a class="nav-link" href="/create-employee">Add new Employee</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0" action="/search-employee" method="get">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="/employee" method="get">
+            <input class="form-control mr-sm-2" type="search" name="keyword" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
@@ -120,6 +120,7 @@
 </body>
 <script th:inline="javascript">
     function getId(id) {
+        // id = $("#idToDelete").val();
         document.getElementById("idToDelete").value = id;
     }
 </script>

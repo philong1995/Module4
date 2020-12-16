@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+</head>
+<body>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Gist</th>
+        <th scope="col">Detail</th>
+    </tr>
+    </thead>
+
+    <th:block th:object="${service}">
+        <tr>
+            <td>
+                Service Type
+            </td>
+            <td>
+                <p th:text="${service.serviceType.getName()}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Name Service:
+            </td>
+            <td>
+                <p th:text="${service.name}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Area(m2):
+            </td>
+            <td>
+                <p th:text="${service.area}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Cost
+            </td>
+            <td>
+                <p th:text="${service.cost}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Max People
+            </td>
+            <td>
+                <p th:text="${service.maxPeople}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Standard Room
+            </td>
+            <td>
+                <p th:text="${service.standardRoom}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Description
+            </td>
+            <td>
+                <p th:text="${service.descriptionOtherConvenience}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Pool Area
+            </td>
+            <td>
+                <p th:text="${service.poolArea}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Number Floor
+            </td>
+            <td>
+                <p th:text="${service.numberOfFloors}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Rent Type
+            </td>
+            <td>
+                <p th:text="${service.serviceType.getName()}"></p>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+<center>
+    <a href="/service">Back List Service</a>
+</center>
+
+</body>
+<th:block th:replace="/layout:: #scriptBlock"></th:block>
+</html>

@@ -1,7 +1,5 @@
 package com.codegym.entity.contract;
 
-import com.codegym.entity.service.AttachService;
-
 import javax.persistence.*;
 
 @Entity

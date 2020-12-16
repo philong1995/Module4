@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+</head>
+<body>
+<h1>Edit Customer</h1>
+<p>
+    <a href="/service">Back List Service</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/service/edit}" th:object="${service}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Service Type :</td>
+            <td>
+                <select th:field="*{serviceType}">
+                    <option th:each="p : ${serviceType}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Name Service :</td>
+            <td><input type="text" th:field="*{name}"/></td>
+        </tr>
+        <tr>
+            <td>Area :</td>
+            <td><input type="text" th:field="*{area}"/></td>
+        </tr>
+        <tr>
+            <td>Cost :</td>
+            <td><input type="text" th:field="*{cost}"/></td>
+        </tr>
+        <tr>
+            <td>Max People :</td>
+            <td><input type="text" th:field="*{maxPeople}"/></td>
+        </tr>
+        <tr>
+            <td>Standard Room :</td>
+            <td><input type="text" th:field="*{standardRoom}"/></td>
+        </tr>
+        <tr>
+            <td>Description :</td>
+            <td><input type="text" th:field="*{descriptionOtherConvenience}"/></td>
+        </tr>
+        <tr>
+            <td>Pool Area :</td>
+            <td><input type="text" th:field="*{poolArea}"/></td>
+        </tr>
+        <tr>
+            <td>Number Floor :</td>
+            <td><input type="text" th:field="*{numberOfFloors}"/></td>
+        </tr>
+        <tr>
+            <td>Rent Type :</td>
+            <td>
+                <select th:field="*{rentType}">
+                    <option th:each="p : ${rentType}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <td></td>
+        <td><input type="submit" value="Update Service"></td>
+        </tr>
+    </table>
+</form>
+
+<th:block th:replace="/layout:: #scriptBlock"></th:block>
+</body>
+</html>

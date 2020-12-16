@@ -24,12 +24,13 @@ public class Service {
     @Column(name = "service_max_people")
     private Integer maxPeople;
 
+// phần này là vill với house
     @Column(name = "service_standard_room")
     private String standardRoom;
 
     @Column(name = "service_description_other_convenience")
     private String descriptionOtherConvenience;
-
+// hồ bơi chỉ có villa
     @Column(name = "service_pool_area")
     private Double poolArea;
 

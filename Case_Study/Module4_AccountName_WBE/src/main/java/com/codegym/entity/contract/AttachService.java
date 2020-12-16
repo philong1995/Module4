@@ -1,4 +1,4 @@
-package com.codegym.entity.service;
+package com.codegym.entity.contract;
 
 import com.codegym.entity.contract.ContractDetail;
 

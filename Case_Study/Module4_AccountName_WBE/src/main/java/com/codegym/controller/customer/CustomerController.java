@@ -2,7 +2,6 @@ package com.codegym.controller.customer;
 
 import com.codegym.entity.customer.Customer;
 import com.codegym.entity.customer.CustomerType;
-import com.codegym.entity.employee.Position;
 import com.codegym.service.customer.CustomerService;
 import com.codegym.service.customer.CustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;

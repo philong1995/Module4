@@ -27,6 +27,12 @@ public class AppUser {
     @OneToMany(mappedBy = "appUser")
     private List<Employee> employees;
 
+    @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)
+    private List<UserRole> userRoleList;
+
+    public AppUser() {
+    }
+
     public Long getUserId() {
         return userId;
     }
@@ -59,4 +65,19 @@ public class AppUser {
         this.enabled = enabled;
     }
 
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
+    }
+
+    public List<UserRole> getUserRoleList() {
+        return userRoleList;
+    }
+
+    public void setUserRoleList(List<UserRole> userRoleList) {
+        this.userRoleList = userRoleList;
+    }
 }
