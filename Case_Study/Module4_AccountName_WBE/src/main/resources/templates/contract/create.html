@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+</head>
+<body>
+
+<h1>Add New Contract</h1>
+<p>
+    <a href="/contract">Back Contract List</a>
+</p>
+<form th:action="@{/contract/create}" th:object="${contract}" method="post">
+    <table>
+        <tr>
+            <td>Name Employee :</td>
+            <td>
+                <select th:field="*{employee}">
+                    <option th:each="p : ${employee}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Name Customer :</td>
+            <td>
+                <select th:field="*{customer}">
+                    <option th:each="p : ${customer}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Name Employee :</td>
+            <td>
+                <select th:field="*{service}">
+                    <option th:each="p : ${service}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Start date :</td>
+            <td>
+                <input type="date" th:field="*{startDate}"/>
+                <p style="color: red" th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>End date :</td>
+            <td>
+                <input type="date" th:field="*{endDate}"/>
+                <p style="color: red" th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></p>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Deposit :</td>
+            <td>
+                <input type="text" th:field="*{deposit}"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td>Total Money :</td>
+            <td>
+                <input type="text" th:field="*{totalMoney}"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add new Employee"></td>
+        </tr>
+    </table>
+</form>
+
+<th:block th:replace="/layout:: #scriptBlock"></th:block>
+</body>
+</html>

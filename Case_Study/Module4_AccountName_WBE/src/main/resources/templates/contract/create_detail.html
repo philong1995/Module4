@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+<head th:replace="/layout :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+</head>
+<body>
+
+<h1>Add New Contract</h1>
+<p>
+    <a href="/contract-detail">Back Contract Detail List</a>
+</p>
+<form th:action="@{/contract/create-detail}" th:object="${contractDetail}" method="post">
+    <table>
+        <tr>
+            <td>Contract :</td>
+            <td>
+                <select th:field="*{contract}">
+                    <option th:each="p : ${contract}" th:value="${p.id}" th:text="${p.id}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Attach Service :</td>
+            <td>
+                <select th:field="*{attachService}">
+                    <option th:each="p : ${attach}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Quantity :</td>
+            <td>
+                <input type="text" th:field="*{quantity}"/>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add Detail"></td>
+        </tr>
+    </table>
+</form>
+
+<th:block th:replace="/layout:: #scriptBlock"></th:block>
+</body>
+</html>

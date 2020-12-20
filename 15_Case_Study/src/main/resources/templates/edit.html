@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+<head th:replace="/i_note_type :: head">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+</head>
+<body>
+<h1>Edit Note</h1>
+<p>
+    <a href="/">Back</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/edit}" th:object="${note}" method="post">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Tittle :</td>
+            <td><input type="text" th:field="*{tittle}"/></td>
+        </tr>
+        <tr>
+            <td>Content :</td>
+            <td><input type="text" th:field="*{content}"/></td>
+        </tr>
+        <tr>
+            <td>Type Note :</td>
+            <td>
+                <select th:field="*{iNoteType}">
+                    <option th:each="p : ${type}" th:value="${p.id}" th:text="${p.name}"></option>
+                </select>
+            </td>
+        </tr>
+        <td></td>
+        <td><input type="submit" value="Update Note"></td>
+        </tr>
+    </table>
+</form>
+
+<th:block th:replace="/i_note_type:: #scriptBlock"></th:block>
+</body>
+</html>

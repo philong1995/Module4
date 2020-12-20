@@ -33,7 +33,7 @@ public class Customer {
     @Column(name = "customer_address")
     private String address;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<Contract> contracts;
 
     @ManyToOne

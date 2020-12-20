@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/i_note_type :: head">
+</head>
+<body>
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">Gist</th>
+        <th scope="col">Detail</th>
+    </tr>
+    </thead>
+
+    <th:block th:object="${note}">
+        <tr>
+            <td>
+                Tittle:
+            </td>
+            <td>
+                <p th:text="${note.tittle}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Content:
+            </td>
+            <td>
+                <p th:text="${note.content}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Type Note:
+            </td>
+            <td>
+                <p th:text="${note.iNoteType.name}"></p>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+<center>
+    <a href="/">Back</a>
+</center>
+
+</body>
+<th:block th:replace="/i_note_type:: #scriptBlock"></th:block>
+</html>

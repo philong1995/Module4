@@ -64,7 +64,7 @@ public class Employee implements Validator {
     @JoinColumn(name = "User_Id", referencedColumnName = "User_Id")
     private AppUser appUser;
 
-    @OneToMany(mappedBy = "employee")
+    @OneToMany(mappedBy = "employee",cascade = CascadeType.ALL)
     private List<Contract> contracts;
 
     public Employee() {

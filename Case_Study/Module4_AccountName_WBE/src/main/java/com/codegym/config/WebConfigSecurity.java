@@ -42,12 +42,12 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 
         // login
         http.formLogin()
-                .loginProcessingUrl("/checkLogin")
-//                .loginPage("/login")
+                .loginProcessingUrl("/j_spring_security_check")
+                .loginPage("/login")
                 // login successful
                 .defaultSuccessUrl("/")
                 // login failed
-                .failureUrl("/login/wrong-password")
+                .failureUrl("/login?error=true")
                 // setting username, password
                 .usernameParameter("userName")
                 .passwordParameter("password")
@@ -60,10 +60,10 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
         // guest
 //        Các trang không yêu cầu login
 //        http.authorizeRequests().antMatchers("/login").permitAll();
-        http.authorizeRequests().antMatchers("/", "/login", "/logout","/employee","/division","/position","/education","/service","/customer").permitAll();
+        http.authorizeRequests().antMatchers("/", "/login", "/logout","/service","/customer").permitAll();
 
         // Nếu chưa login, nó sẽ redirect tới trang /login.
-        http.authorizeRequests().antMatchers("/create-employee","/edit-employee/**","/view-employee/**","/delete-employee/**","/customer/**","/service/**").access("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')");
+        http.authorizeRequests().antMatchers("/create-employee","/employee","/division","/position","/education","/edit-employee/**","/view-employee/**","/delete-employee/**","/customer/**","/service/**").access("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')");
 //
 //         Trang chỉ dành cho ADMIN
         http.authorizeRequests().antMatchers("/create-employee","/edit-employee/**","/view-employee/**","/delete-employee/**","/customer/**","/service/**").access("hasRole('ROLE_ADMIN')");

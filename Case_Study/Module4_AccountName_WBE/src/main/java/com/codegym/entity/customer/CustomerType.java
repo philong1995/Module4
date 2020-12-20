@@ -16,7 +16,7 @@ public class CustomerType {
     @Column(name = "customer_type_name",unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "customerType")
+    @OneToMany(mappedBy = "customerType",cascade = CascadeType.ALL)
     private List<Customer> customers;
 
     public CustomerType() {

@@ -13,7 +13,7 @@ public class Division {
     @Column(name = "division_name",unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "division")
+    @OneToMany(mappedBy = "division",cascade = CascadeType.ALL)
     private List<Employee> employees;
 
     public Division() {

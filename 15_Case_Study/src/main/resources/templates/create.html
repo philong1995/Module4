@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<form th:action="@{/create}" th:object="${note}" method="post">
+    <div class="container">
+        <div class="row">
+            <h1>add note</h1>
+        </div>
+        <div class="row">
+            <h4 style="text-align:center;text-decoration: none;color: white"><a style="text-decoration: none;color: white" href="/">Back</a></h4>
+        </div>
+        <div class="row input-container">
+            <div class="col-md-6 col-sm-12">
+                <div class="styled-input">
+                    <input type="text" th:field="*{tittle}" required />
+                    <label>Tittle</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="styled-input" style="float:right;">
+                    <select th:field="*{iNoteType}">
+                        <option th:each="p : ${type}" th:value="${p.id}" th:text="${p.name}"></option>
+                    </select>
+                    <label>Type</label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="styled-input wide">
+                    <textarea th:field="*{content}" required></textarea>
+                    <label>Content</label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <input type="submit" class="btn-lrg submit-btn" value="Create Note"/>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!--<form th:action="@{/create}" th:object="${note}" method="post">-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>Title :</td>-->
+<!--            <td>-->
+<!--                <input type="text" th:field="*{tittle}"/>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Content :</td>-->
+<!--            <td>-->
+<!--                <input type="" th:field="*{birthday}"/>-->
+<!--                &lt;!&ndash;                <p style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></p>&ndash;&gt;-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Gender :</td>-->
+<!--            <td>-->
+<!--                <select th:field="*{gender}">-->
+<!--                    <option value="Female">Female</option>-->
+<!--                    <option value="Male">Male</option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>ID Card :</td>-->
+<!--            <td>-->
+<!--                <input type="text" th:field="*{idCard}"/>-->
+<!--                &lt;!&ndash;                <p style="color: red" th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></p>&ndash;&gt;-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Phone :</td>-->
+<!--            <td>-->
+<!--                <input type="text" th:field="*{phone}"/>-->
+<!--                &lt;!&ndash;                <p style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>&ndash;&gt;-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Email :</td>-->
+<!--            <td>-->
+<!--                <input type="email" th:field="*{email}"/>-->
+<!--                &lt;!&ndash;                <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>&ndash;&gt;-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Address :</td>-->
+<!--            <td>-->
+<!--                <input type="text" th:field="*{address}"/>-->
+<!--                &lt;!&ndash;                <p style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>&ndash;&gt;-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Customer Type :</td>-->
+<!--            <td>-->
+<!--                <select th:field="*{customerType}">-->
+<!--                    <option th:each="p : ${cusType}" th:value="${p.id}" th:text="${p.name}"></option>-->
+<!--                </select>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td></td>-->
+<!--            <td><input type="submit" value="Add new Employee"></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</form>-->
+
+<!--<th:block th:replace="/i_note_type:: #scriptBlock"></th:block>-->
+</body>
+</html>

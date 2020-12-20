@@ -14,7 +14,7 @@ public class EducationDegree {
     @Column(name = "education_degree_name",unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "educationDegree")
+    @OneToMany(mappedBy = "educationDegree",cascade = CascadeType.ALL)
     private List<Employee> employees;
 
     public EducationDegree() {

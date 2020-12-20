@@ -37,7 +37,7 @@ public class Service {
     @Column(name = "service_number_of_floors")
     private Integer numberOfFloors;
 
-    @OneToMany(mappedBy = "service")
+    @OneToMany(mappedBy = "service",cascade = CascadeType.ALL)
     private List<Contract> contracts;
 
     @ManyToOne

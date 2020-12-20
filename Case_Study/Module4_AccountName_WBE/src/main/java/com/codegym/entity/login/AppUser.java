@@ -24,7 +24,7 @@ public class AppUser {
     @Column(name = "Enabled", length = 1, nullable = false)
     private boolean enabled;
 
-    @OneToMany(mappedBy = "appUser")
+    @OneToMany(mappedBy = "appUser",cascade = CascadeType.ALL)
     private List<Employee> employees;
 
     @OneToMany(mappedBy = "appUser", cascade = CascadeType.ALL)

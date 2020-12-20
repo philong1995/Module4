@@ -5,34 +5,24 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
 </head>
 <body>
+
+<div th:replace="/layout :: nav"></div>
+
 <center>
-    <h1>Furama Resort</h1>
+    <h1>EMPLOYEE</h1>
     <th:block th:if="${message}">
         <p th:text="${message}" style="color: green"></p>
     </th:block>
 </center>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Home</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="/employee" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Employee
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/employee">Employee</a>
-                    <a class="dropdown-item" href="/division">Division</a>
-                    <a class="dropdown-item" href="/position">Position</a>
-                    <a class="dropdown-item" href="/education">Education Degree</a>
-                </div>
-            </li>
-            <li class="nav-item" >
-                <a class="nav-link" href="/create-employee">Add new Employee</a>
+            <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+                <a class="btn btn-outline-success" href="/create-employee">+ Add new Employee</a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" action="/employee" method="get">
@@ -52,7 +42,9 @@
         <th scope="col">Address</th>
         <th scope="col">Position</th>
         <th scope="col">Division</th>
-        <th scope="col">Action</th>
+        <div sec:authorize="hasRole('ADMIN')">
+            <th scope="col">Action</th>
+        </div>
     </tr>
     </thead>
 
@@ -67,26 +59,23 @@
             <td th:text="${employees.address}"></td>
             <td th:text="${employees.position.getName()}"></td>
             <td th:text="${employees.division.getName()}"></td>
-<!--            <td sec:authorize="hasRole('ADMIN')">-->
-            <td>
+            <td sec:authorize="hasRole('ADMIN')">
                 <a class="btn btn-outline-primary" th:href="@{/edit-employee/__${employees.id}__ }">Edit</a>
                 <button class="btn btn-outline-danger" th:data-id="${employees.getId()}" onclick="getId(this.getAttribute('data-id'))" data-toggle="modal" data-target="#deleteModal">Delete</button>
             </td>
-
-<!--            </td>-->
         </tr>
     </th:block>
 </table>
 
-<nav aria-label="Page navigation example" class="mx-auto" style="width: 200px">
-    <ul class="pagination">
-        <li class="page-item"><a class="page-link" th:if="${employee.hasPrevious()}" th:href="@{/employee(page = 0, keyword = ${keywordAfterCheck})}">First</a></li>
-        <li class="page-item"><a class="page-link" th:if="${employee.hasPrevious()}" th:href="@{/employee(page = ${employee.number - 1}, keyword = ${keywordAfterCheck})}">Previous</a></li>
+<nav aria-label="Page navigation example" class="mx-auto">
+    <ul class="pagination justify-content-center">
+        <li class="page-item"><a class="page-link" th:if="${employee.hasPrevious()}" th:href="@{/employee(page = 0, keyword = ${keywordAfterCheck})}"> << </a></li>
+        <li class="page-item"><a class="page-link" th:if="${employee.hasPrevious()}" th:href="@{/employee(page = ${employee.number - 1}, keyword = ${keywordAfterCheck})}"> < </a></li>
         <li class="page-item"><a class="page-link" th:if="${employee.number > 0}" th:href="@{/employee(page=${employee.number} -1, keyword = ${keywordAfterCheck})}" th:text="${employee.number - 1}"></a></li>
         <li class="page-item"><a class="page-link" th:href="@{employee(page=${employee.number}, keyword = ${keywordAfterCheck})}" th:text="${employee.number}"></a></li>
         <li class="page-item"><a class="page-link" th:if="${employee.number > employee.totalPages}" th:href="@{/employee(page=${employee.number} +1, keyword = ${keywordAfterCheck})}" th:text="${employee.number+1}"></a></li>
-        <li class="page-item"><a class="page-link" th:if="${employee.hasNext()}" th:href="@{/employee(page = ${employee.number + 1}, keyword = ${keywordAfterCheck})}">Next</a></li>
-        <li class="page-item"><a class="page-link" th:if="${employee.hasNext()}" th:href="@{/employee(page = ${employee.totalPages - 1}, keyword = ${keywordAfterCheck})}">Last</a></li>
+        <li class="page-item"><a class="page-link" th:if="${employee.hasNext()}" th:href="@{/employee(page = ${employee.number + 1}, keyword = ${keywordAfterCheck})}"> > </a></li>
+        <li class="page-item"><a class="page-link" th:if="${employee.hasNext()}" th:href="@{/employee(page = ${employee.totalPages - 1}, keyword = ${keywordAfterCheck})}"> >> </a></li>
     </ul>
 </nav>
 
@@ -118,9 +107,15 @@
 <th:block th:replace="/layout:: #scriptBlock"></th:block>
 
 </body>
+<!--<script th:inline="javascript">-->
+<!--    function getId(id, name) {-->
+<!--        $("#idToDelete").val(id);-->
+<!--        $("#nameToDelete").val(name);-->
+<!--    }-->
+<!--</script>-->
+
 <script th:inline="javascript">
     function getId(id) {
-        // id = $("#idToDelete").val();
         document.getElementById("idToDelete").value = id;
     }
 </script>

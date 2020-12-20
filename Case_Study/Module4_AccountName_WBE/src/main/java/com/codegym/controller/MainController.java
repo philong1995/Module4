@@ -28,21 +28,21 @@ public class MainController {
 //        String userInfo = WebUtils.toString(loginedUser);
 //        model.addAttribute("userInfo", userInfo);
 //
-//        return "adminPage";
+//        return "home";
 //    }
 
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    public String loginPage(Model model) {
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String loginPage(Model model) {
+
+        return "loginPage";
+    }
+
+    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
+    public String logoutSuccessfulPage(Model model) {
+        model.addAttribute("title", "Logout");
+        return "home";
+    }
 //
-//        return "loginPage";
-//    }
-
-//    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
-//    public String logoutSuccessfulPage(Model model) {
-//        model.addAttribute("title", "Logout");
-//        return "logoutSuccessfulPage";
-//    }
-
 //    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
 //    public String userInfo(Model model, Principal principal) {
 //
@@ -56,7 +56,7 @@ public class MainController {
 //        String userInfo = WebUtils.toString(loginedUser);
 //        model.addAttribute("userInfo", userInfo);
 //
-//        return "userInfoPage";
+//        return "home";
 //    }
 
     @RequestMapping(value = "/403", method = RequestMethod.GET)

@@ -25,7 +25,7 @@ public class AttachService {
     @Column(name = "attach_service_status")
     private String status;
 
-    @OneToMany(mappedBy = "attachService")
+    @OneToMany(mappedBy = "attachService",cascade = CascadeType.ALL)
     private List<ContractDetail> contractDetails;
 
     public AttachService() {

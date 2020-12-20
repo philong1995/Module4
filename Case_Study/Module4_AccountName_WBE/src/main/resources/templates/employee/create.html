@@ -1,97 +1,79 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
-<head th:replace="/layout :: head">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <link rel="stylesheet" href="css/touch.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 </head>
 <body>
-
-<h1>Add new Employee</h1>
-<p>
-    <a href="/employee">Back Employee List</a>
-</p>
-<form th:action="@{/create-employee}" th:object="${employee}" method="post">
-    <table>
-        <tr>
-            <td>Name Employee :</td>
-            <td>
-                <input type="text" th:field="*{name}"/>
+    <section class="get-in-touch">
+        <h1 class="title">ADD NEW EMPLOYEE</h1>
+        <form class="contact-form row" th:action="@{/create-employee}" th:object="${employee}" method="post">
+            <div class="form-field col-lg-6">
+                <input class="input-text js-input" type="text" th:field="*{name}" required>
                 <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
-            </td>
-        </tr>
-        <tr>
-            <td>Day of birth :</td>
-            <td>
-                <input type="date" th:field="*{birthday}"/>
-<!--                <p style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></p>-->
-            </td>
-        </tr>
-        <tr>
-            <td>ID Card :</td>
-            <td>
-                <input type="text" th:field="*{idCard}"/>
-                <p style="color: red" th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></p>
-            </td>
-        </tr>
-        <tr>
-            <td>Salary :</td>
-            <td>
-                <input type="text" th:field="*{salary}"/>
+                <label class="label">Name</label>
+            </div>
+            <div class="form-field col-lg-6 ">
+                <input class="input-text js-input" type="date" th:field="*{birthday}" required>
+                <p style="color: red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></p>
+                <label class="label">DAY OF BIRTH</label>
+            </div>
+            <div class="form-field col-lg-6 ">
+                <input class="input-text js-input" type="text" th:field="*{idCard}" required>
+                <label class="label">ID CARD</label>
+                <span style="color: red" th:if="${#fields.hasErrors('idCard')}" th:errors="*{idCard}"></span>
+            </div>
+            <div class="form-field col-lg-6 ">
+                <input class="input-text js-input" type="text" th:field="*{salary}" required>
                 <p style="color: red" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></p>
-            </td>
-        </tr>
-        <tr>
-            <td>Phone :</td>
-            <td>
-                <input type="text" th:field="*{phone}"/>
-                <p style="color: red" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
-            </td>
-        </tr>
-        <tr>
-            <td>Email :</td>
-            <td>
-                <input type="email" th:field="*{email}"/>
+                <label class="label">SALARY</label>
+            </div>
+            <div class="form-field col-lg-6 ">
+                <input class="input-text js-input" type="email" th:field="*{email}" required>
                 <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-            </td>
-        </tr>
-        <tr>
-            <td>Address :</td>
-            <td>
-                <input type="text" th:field="*{address}"/>
+                <label class="label">E-MAIL</label>
+            </div>
+            <div class="form-field col-lg-6">
+                <input class="input-text js-input" type="text" th:field="*{address}" required>
                 <p style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
-            </td>
-        </tr>
-        <tr>
-            <td>Position :</td>
-            <td>
-                <select th:field="*{position}">
+                <label class="label">ADDRESS</label>
+            </div>
+            <div class="form-field col-lg-4">
+                <select th:field="*{position}" id="position" class="input-text js-input" required>
                     <option th:each="p : ${position}" th:value="${p.id}" th:text="${p.name}"></option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Division :</td>
-            <td>
-                <select th:field="*{division}">
+                <label class="label" for="position">POSITION</label>
+            </div>
+            <div class="form-field col-lg-4">
+                <select th:field="*{division}" id="division" class="input-text js-input" required>
                     <option th:each="p : ${division}" th:value="${p.id}" th:text="${p.name}"></option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td>Education Degree :</td>
-            <td>
-                <select th:field="*{educationDegree}">
+                <label class="label" for="division">DIVISION</label>
+            </div>
+            <div class="form-field col-lg-4">
+                <select th:field="*{educationDegree}" id="educationDegree" class="input-text js-input" required>
                     <option th:each="p : ${education}" th:value="${p.id}" th:text="${p.name}"></option>
                 </select>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td><input type="submit" value="Add new Employee"></td>
-        </tr>
-    </table>
-</form>
-
-<th:block th:replace="/layout:: #scriptBlock"></th:block>
+                <label class="label" for="educationDegree">EDUCATION DEGREE</label>
+            </div>
+            <div class="form-field col-lg-6">
+                <center>
+                    <input class="submit-btn" type="submit" value="SUBMIT">
+                </center>
+            </div>
+            <div class="form-field col-lg-6">
+                <center>
+                    <a style="text-decoration: none" class="submit-btn" href="/employee">
+                        <center>
+                            CANCEL
+                        </center>
+                    </a>
+                </center>
+            </div>
+        </form>
+    </section>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
